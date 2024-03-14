@@ -25,6 +25,9 @@ def main(input_filepath, output_filepath):
         text = data_json['text']
         rating = data_json['rating']
         return text, rating
+    
+    def adjust_rating(rating):
+        return int(rating) - 1
 
     # Read data from file
     with open(input_filepath, 'r', encoding='utf-8') as file:
@@ -38,7 +41,7 @@ def main(input_filepath, output_filepath):
         
         for item in data:
             text, rating = extract_text_rating(item)
-            writer.writerow({'text': text, 'rating': rating})
+            writer.writerow({'text': text, 'rating': adjust_rating(rating)})
 
 
 def stream_data(input_file, output_file, num_lines):
