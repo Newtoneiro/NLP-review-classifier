@@ -1,10 +1,8 @@
-NLP-reviews-classifier
-==============================
+# NLP-reviews-classifier
 
 This project aims to train a model which will classify hotel reviews as number of stars
 
-Project Organization
-------------
+## Project Organization
 
     ├── LICENSE
     ├── Makefile           <- Makefile with commands like `make data` or `make train`
@@ -36,7 +34,8 @@ Project Organization
     │   ├── __init__.py    <- Makes src a Python module
     │   │
     │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
+    │   │   └── make_dataset.py < - This script was used to convert 50M record dataset into arround 1M records.
+    |   |   └── data_preprocess.ipynb <- This script preprocesses and balances the 1M records dataset (data.zip)
     │   │
     │   ├── features       <- Scripts to turn raw data into features for modeling
     │   │   └── build_features.py
@@ -51,7 +50,14 @@ Project Organization
     │
     └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
 
+---
 
---------
+# TODO:
+
+- [] 3 modele + naiwny
+- [] opis implementacji
+- [] transfer umiejętności najlepszego modelu na recenzje np. filmów
+- [] proszę również o krótki opis pozostałych rekordów
+- [] opis preprocessingu
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>

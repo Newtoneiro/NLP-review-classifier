@@ -18,7 +18,7 @@ def main(input_filepath, output_filepath):
     logger = logging.getLogger(__name__)
     logger.info('making final data set from raw data')
 
-            # Open the JSON file
+    # Open the JSON file
     # Function to extract text and rating
     def extract_text_rating(data):
         data_json = json.loads(data)
@@ -75,4 +75,9 @@ if __name__ == '__main__':
 
     main()
 
-
+# =============================================================================
+# This file was used to convert the 50 million reviews dataset from JSON to 
+# arround 1M data in CSV format. The data was then used to train the model.
+# The original dataset is available at:
+# https://aclanthology.org/2020.lrec-1.605/
+# =============================================================================
