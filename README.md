@@ -2,6 +2,32 @@
 
 This project aims to train a model which will classify hotel reviews as number of stars
 
+## Project setup
+
+- Step 1: Install Git LFS
+
+  - If you haven't already installed Git LFS, you can download and install it from the official website or use a package manager like Homebrew (for macOS) or Chocolatey (for Windows). Refer to the Git LFS documentation for detailed installation instructions.
+
+- Step 2: Clone the Repository
+
+  - To clone a repository with LFS files, use the git clone command followed by the repository URL:
+
+    `git clone https://github.com/Newtoneiro/NLP-review-classifier`
+
+- Step 3: Fetch LFS Files
+
+  - Once the repository is cloned, navigate into the repository directory and run the following command to fetch the LFS files:
+
+    `git lfs pull`
+
+  - This command downloads the LFS-tracked files associated with the repository.
+
+- Step 4: Pull Updates
+
+  - If you've previously cloned the repository and new LFS files have been added or modified, you can pull the updates using the standard git pull command:
+
+    `git pull`
+
 ## Project Organization
 
     ├── LICENSE
