@@ -4,8 +4,9 @@ import logging
 from pathlib import Path
 from dotenv import find_dotenv, load_dotenv
 
-import json
 import csv
+
+NO_SAMPLES_PER_CLASS = 65_000
 
 
 @click.command()
@@ -21,13 +22,15 @@ def main(input_filepath, output_filepath):
     # Open the JSON file
     # Function to extract text and rating
     def extract_text_rating(data):
-        data_json = json.loads(data)
-        text = data_json['text']
-        rating = data_json['rating']
+        text = data['text']
+        rating = data['rating']
         return text, rating
-    
+
     def adjust_rating(rating):
-        return int(rating) - 1
+        if int(rating) < 4:
+            return 0
+        else:
+            return 1
 
     # Read data from file
     with open(input_filepath, 'r', encoding='utf-8') as file:
@@ -38,28 +41,23 @@ def main(input_filepath, output_filepath):
         fieldnames = ['text', 'rating']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
-        
-        for item in data:
+
+        pos_count, neg_count = 0, 0
+
+        for i, item in enumerate(csv.DictReader(data)):
+            logger.info(f'Processing line {i}')
             text, rating = extract_text_rating(item)
-            writer.writerow({'text': text, 'rating': adjust_rating(rating)})
+            rating = adjust_rating(rating)
+            if rating == 0 and neg_count < NO_SAMPLES_PER_CLASS:
+                writer.writerow({'text': text, 'rating': rating})
+                neg_count += 1
+            elif rating == 1 and pos_count < NO_SAMPLES_PER_CLASS:
+                writer.writerow({'text': text, 'rating': rating})
+                pos_count += 1
 
-
-def stream_data(input_file, output_file, num_lines):
-    # Open the input file for reading
-    with open(input_file, 'r') as infile:
-        # Open the output file for writing
-        with open(output_file, 'w') as outfile:
-            # Initialize a counter to keep track of the number of lines streamed
-            line_count = 0
-            # Read each line from the input file
-            for line in infile:
-                # Write the line to the output file
-                outfile.write(line)
-                # Increment the line count
-                line_count += 1
-                # Check if we have reached the desired number of lines
-                if line_count >= num_lines:
-                    break
+            if pos_count == NO_SAMPLES_PER_CLASS \
+                    and neg_count == NO_SAMPLES_PER_CLASS:
+                break
 
 
 if __name__ == '__main__':
