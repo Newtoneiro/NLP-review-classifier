@@ -80,10 +80,7 @@ This project aims to train a model which will classify hotel reviews as number o
 
 # TODO:
 
-- [] 3 modele + naiwny
-- [] opis implementacji
-- [] transfer umiejętności najlepszego modelu na recenzje np. filmów
-- [] proszę również o krótki opis pozostałych rekordów
-- [] opis preprocessingu
+- [] TENSORBOARD
+- [] Transfer wiedzy na filmy
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
